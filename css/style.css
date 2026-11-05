@@ -122,18 +122,22 @@ body {
   object-fit: contain; max-height: 70vh; margin: 0 auto;
 }
 .result-video.fallback-thumb { object-fit: cover; }
-/* galeri slide (foto carousel) — geser horizontal */
+/* galeri slide (foto carousel) — satu slide besar per layar, geser horizontal */
 .slides-gallery {
-  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding-bottom: 6px; -webkit-overflow-scrolling: touch;
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: thin;
 }
 .slides-gallery::-webkit-scrollbar { height: 6px; }
 .slides-gallery::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
-.slide-item { flex: 0 0 auto; scroll-snap-align: center; text-decoration: none; }
-.slide-item img {
-  height: 420px; max-width: 82vw; width: auto; border-radius: 12px;
-  display: block; background: #000; object-fit: cover;
+.slide-item {
+  flex: 0 0 85%; width: 85%; scroll-snap-align: center; text-decoration: none;
+  display: block; border-radius: 12px; background: #000; overflow: hidden;
 }
+.slide-item img {
+  width: 100%; height: auto; max-height: 70vh; object-fit: contain;
+  display: block; background: #000;
+}
+.slide-counter { text-align: center; font-size: 12px; color: var(--muted); margin-top: 6px; }
 .media-hint { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
 /* stats: creator + like/komen/share */
 .result-stats { margin-bottom: 4px; }
@@ -200,8 +204,7 @@ body {
 .site-footer { text-align: center; padding: 30px 20px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--card-border); max-width: 1080px; margin: 0 auto; }
 
 @media (max-width: 600px) {
-  .slide-item img { height: 360px; }
   .info-grid { grid-template-columns: 1fr; }
   .header-nav { display: none; }
-    }
-  
+                                               }
+             
