@@ -111,15 +111,43 @@ body {
 .message.info { background: rgba(94, 234, 212, 0.06); border-color: rgba(94, 234, 212, 0.25); color: #9cf0e1; }
 
 .result-card {
-  margin-top: 24px; display: grid; grid-template-columns: 170px 1fr; gap: 18px;
+  margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 16px;
   background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
   padding: 18px; text-align: left; animation: pop .35s ease;
 }
 @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
-.result-media img { width: 100%; border-radius: 12px; aspect-ratio: 9/16; object-fit: cover; background: #000; display: block; }
-.result-info h2 { font-size: 16.5px; line-height: 1.4; margin-bottom: 10px; font-weight: 600; }
-.result-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-.meta-pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); }
+/* video preview — rasio diatur inline oleh JS sesuai video asli (9:16 / 16:9 / dll) */
+.result-video {
+  width: 100%; display: block; border-radius: 12px; background: #000;
+  object-fit: contain; max-height: 70vh; margin: 0 auto;
+}
+.result-video.fallback-thumb { object-fit: cover; }
+/* galeri slide (foto carousel) — geser horizontal */
+.slides-gallery {
+  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 6px; -webkit-overflow-scrolling: touch;
+}
+.slides-gallery::-webkit-scrollbar { height: 6px; }
+.slides-gallery::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+.slide-item { flex: 0 0 auto; scroll-snap-align: center; text-decoration: none; }
+.slide-item img {
+  height: 420px; max-width: 82vw; width: auto; border-radius: 12px;
+  display: block; background: #000; object-fit: cover;
+}
+.media-hint { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+/* stats: creator + like/komen/share */
+.result-stats { margin-bottom: 4px; }
+.stat-creator { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.stat-icon { font-size: 15px; line-height: 1; }
+.stat-line { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.stat-chip {
+  font-size: 12.5px; padding: 5px 12px; border-radius: 999px;
+  background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--card-border);
+}
+.result-desc {
+  font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 14px;
+  white-space: pre-wrap; word-break: break-word;
+}
 .result-links { display: flex; flex-direction: column; gap: 10px; }
 .dl-link {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -172,9 +200,8 @@ body {
 .site-footer { text-align: center; padding: 30px 20px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--card-border); max-width: 1080px; margin: 0 auto; }
 
 @media (max-width: 600px) {
-  .result-card { grid-template-columns: 1fr; }
-  .result-media img { aspect-ratio: 16/9; }
+  .slide-item img { height: 360px; }
   .info-grid { grid-template-columns: 1fr; }
   .header-nav { display: none; }
-             }
+    }
   
