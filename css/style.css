@@ -206,5 +206,32 @@ body {
 @media (max-width: 600px) {
   .info-grid { grid-template-columns: 1fr; }
   .header-nav { display: none; }
-                                               }
-             
+}
+
+/* ── tab switcher ── */
+.tabs { display: flex; gap: 6px; background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 5px; margin-bottom: 18px; }
+.tab-btn { flex: 1; padding: 11px 8px; border: none; border-radius: 10px; background: transparent; color: var(--muted); font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.tab-btn.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-ink); }
+.tab-panel { animation: pop .3s ease; }
+
+/* ── remove background ── */
+.drop-area { display: block; border: 2px dashed var(--card-border); border-radius: 12px; padding: 26px 14px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
+.drop-area:hover, .drop-area.drag { border-color: var(--accent); background: rgba(94,234,212,0.05); }
+.drop-icon { font-size: 32px; display: block; margin-bottom: 8px; }
+.drop-inner p { font-size: 14px; color: var(--text); }
+.drop-sub { font-size: 12px !important; color: var(--muted) !important; margin-top: 4px; }
+.rb-preview { max-width: 100%; max-height: 240px; border-radius: 10px; display: block; margin: 0 auto; }
+.rb-result-media img {
+  width: 100%; max-height: 60vh; object-fit: contain; display: block; margin: 0 auto; border-radius: 12px;
+  background: repeating-conic-gradient(#2a2d33 0% 25%, #1a1d22 0% 50%) 50% / 18px 18px;
+}
+
+/* ── slide loading: gambar tidak ditampilkan sampai benar-benar full (hindari kesan "terpotong") ── */
+.slide-item { position: relative; }
+.slide-item img { opacity: 0; transition: opacity .3s; }
+.slide-item img.loaded { opacity: 1; }
+.slide-item.loading::after {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px;
+  border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite;
+            }
+  
